@@ -33,4 +33,4 @@ volumes:
   db:
 
 networks:
-  app-network:
+  wordpress-network:
