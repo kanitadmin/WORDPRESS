@@ -5,7 +5,7 @@ services:
     container_name: wordpress
     restart: unless-stopped
     ports:
-      - 80:80
+      - '80:80'
     environment:
       - TZ=Asia/Bangkok
       - WORDPRESS_DB_HOST=db:3306
@@ -14,6 +14,7 @@ services:
       - WORDPRESS_DB_NAME=wordpress
     volumes:
       - wordpress:/var/www/html
+      - wordpress-config:/etc/apache2
     networks:
       - wordpress-network
       
@@ -29,13 +30,14 @@ services:
       - MYSQL_DATABASE=wordpress
     volumes:
       - db:/var/lib/mysql
+      - db-config:/etc/mysql/conf.d
     networks:
       - wordpress-network
       
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
-    restart: always
+    restart: unless-stopped
     environment:
       - TZ=Asia/Bangkok
       - PMA_HOST=db
@@ -46,10 +48,11 @@ services:
       - 8081:80
     networks:
       - wordpress-network
-      
 volumes:
   wordpress:
+  wordpress-config:
   db:
+  db-config:
 
 networks:
   wordpress-network:
