@@ -5,7 +5,7 @@ services:
     container_name: wordpress
     restart: unless-stopped
     ports:
-      - '80:80'
+      - 80:80
     environment:
       - TZ=Asia/Bangkok
       - WORDPRESS_DB_HOST=db:3306
@@ -37,7 +37,7 @@ services:
     container_name: phpmyadmin
     restart: always
     environment:
-      - TZ='Asia/Bangkok'
+      - TZ=Asia/Bangkok
       - PMA_HOST=db
       - PMA_PORT=3306
       - PMA_ARBITRARY=0
