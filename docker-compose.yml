@@ -1,15 +1,4 @@
 services:
-  db:
-    image: mariadb:latest
-    container_name: db
-    restart: unless-stopped
-    environment:
-      - MYSQL_DATABASE=wordpress
-    volumes:
-      - db:/var/lib/mysql
-    networks:
-      - app-network
-
   wordpress:
     depends_on:
       - db
@@ -25,7 +14,20 @@ services:
       - wordpress:/var/www/html
     networks:
       - app-network
-
+      
+  db:
+    image: mariadb:latest
+    container_name: db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - app-network
 volumes:
   wordpress:
   db:
