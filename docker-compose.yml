@@ -13,7 +13,7 @@ services:
     volumes:
       - wordpress:/var/www/html
     networks:
-      - app-network
+      - wordpress-network
       
   db:
     image: mariadb:latest
@@ -27,7 +27,7 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - app-network
+      - wordpress-network
 volumes:
   wordpress:
   db:
