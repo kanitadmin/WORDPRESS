@@ -17,11 +17,11 @@ services:
       - wordpress-config:/etc/apache2
     networks:
       - wordpress-network
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "tcp://127.0.0.1:514"
-        tag: "wordpress"
+    #logging:
+    #  driver: syslog
+    #  options:
+    #    syslog-address: "tcp://127.0.0.1:514"
+    #    tag: "wordpress"
   db:
     image: mariadb:11.4
     container_name: db
@@ -37,11 +37,11 @@ services:
       - db-config:/etc/mysql/conf.d
     networks:
       - wordpress-network
-    logging:
-      driver: syslog
-      options:
-        syslog-address: "tcp://127.0.0.1:514"
-        tag: "mariadb"
+    #logging:
+    #  driver: syslog
+    #  options:
+    #    syslog-address: "tcp://127.0.0.1:514"
+    #    tag: "mariadb"
       
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
